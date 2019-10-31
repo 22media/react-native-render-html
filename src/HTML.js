@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { View, Text, ViewPropTypes, ActivityIndicator, Dimensions } from 'react-native';
+import { View, Text, TextInput, ViewPropTypes, ActivityIndicator, Dimensions } from 'react-native';
 import { cssStringToRNStyle, _getElementClassStyles, cssStringToObject, cssObjectToString, computeTextStyles } from './HTMLStyles';
 import {
     BLOCK_TAGS,
@@ -182,7 +182,7 @@ export default class HTML extends PureComponent {
     /**
      * Loops on children an find texts that need to be wrapped so we don't render line breaks
      * The wrapper can either be a <p> when it should be a paragraph, or a custom tag named
-     * "textwrapper", which renders a plain <Text> component.
+     * "textwrapper", which renders a plain <TextInput> component.
      * @param {any} children
      * @returns {array}
      * @memberof HTML
@@ -445,7 +445,7 @@ export default class HTML extends PureComponent {
 
             const classStyles = _getElementClassStyles(attribs, classesStyles);
             const textElement = data ?
-                <Text
+                <TextInput
                   allowFontScaling={allowFontScaling}
                   style={computeTextStyles(
                       element,
@@ -461,7 +461,7 @@ export default class HTML extends PureComponent {
                       })}
                 >
                     { data }
-                </Text> :
+                </TextInput> :
                 false;
 
             const style = [
@@ -504,7 +504,7 @@ export default class HTML extends PureComponent {
                 remoteErrorView(this.props, this.state) :
                 (
                     <View style={{ flex: 1, alignItems: 'center' }}>
-                        <Text allowFontScaling={allowFontScaling} style={{ fontStyle: 'italic', fontSize: 16 }}>Could not load { this.props.uri }</Text>
+                        <TextInput allowFontScaling={allowFontScaling} style={{ fontStyle: 'italic', fontSize: 16 }}>Could not load { this.props.uri }</TextInput>
                     </View>
                 );
         }

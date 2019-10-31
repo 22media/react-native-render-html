@@ -1,5 +1,5 @@
 import React from 'react';
-import { TouchableOpacity, Text, View, Platform } from 'react-native';
+import { TouchableOpacity, Text, TextInput, View, Platform } from 'react-native';
 import { WebView } from 'react-native-webview';
 import { _constructStyles, _getElementClassStyles } from './HTMLStyles';
 import HTMLImage from './HTMLImage';
@@ -20,9 +20,9 @@ export function a (htmlAttribs, children, convertedCSSStyles, passProps) {
 
     if (parentWrapper === 'Text') {
         return (
-            <Text {...passProps} style={style} onPress={onPress} key={key}>
+            <TextInput {...passProps} style={style} onPress={onPress} key={key}>
                 { children || data }
-            </Text>
+            </TextInput>
         );
     } else {
         return (
@@ -94,7 +94,7 @@ export function ul (htmlAttribs, children, convertedCSSStyles, passProps = {}) {
                 );
             } else if (rawChild.parentTag === 'ol' && rawChild.tagName === 'li') {
                 prefix = listsPrefixesRenderers && listsPrefixesRenderers.ol ? listsPrefixesRenderers.ol(...rendererArgs) : (
-                    <Text allowFontScaling={allowFontScaling} style={{ marginRight: 5, fontSize: baseFontSize }}>{ index + 1 })</Text>
+                    <TextInput allowFontScaling={allowFontScaling} style={{ marginRight: 5, fontSize: baseFontSize }}>{ index + 1 })</TextInput>
                 );
             }
         }
@@ -146,28 +146,28 @@ export function iframe (htmlAttribs, children, convertedCSSStyles, passProps) {
 
 export function pre (htlmAttribs, children, convertedCSSStyles, passProps) {
     return (
-        <Text
+        <TextInput
           key={passProps.key}
           style={{ fontFamily: Platform.OS === 'android' ? 'monospace' : 'Menlo' }}>
             { children }
-        </Text>
+        </TextInput>
     );
 }
 
 export function br (htlmAttribs, children, convertedCSSStyles, passProps) {
     return (
-        <Text
+        <TextInput
             allowFontScaling={passProps.allowFontScaling}
             style={{ height: 1.2 * passProps.emSize, flex: 1 }}
             key={passProps.key}
         >
             {"\n"}
-        </Text>
+        </TextInput>
     );
 }
 
 export function textwrapper (htmlAttribs, children, convertedCSSStyles, { allowFontScaling, key }) {
     return (
-        <Text allowFontScaling={allowFontScaling} key={key} style={convertedCSSStyles}>{ children }</Text>
+        <TextInput allowFontScaling={allowFontScaling} key={key} style={convertedCSSStyles}>{ children }</TextInput>
     );
 }
